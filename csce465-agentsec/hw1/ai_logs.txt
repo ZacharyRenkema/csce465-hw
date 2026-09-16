@@ -1,0 +1,72 @@
+Hi, I have provided the README and project pdf assignment to this. I will use this chat as my main chat for any AI and course approved help/questions I may have in completing this assignment. I want to make it clear that I intend in no way to abuse AI or cheat in anyway on this assignment in accordance to the Texas A&M Honor Code. If a question that I have borders or crosses the boundary of what is acceptable in the AI usage policy for the assignment or the CSCE 465 course syllabus, please let me know and reject answering of the question or ask me to ask in a different way. With that being said, I also plan to cite this chat for submission at the end in my report. Lets get started. I am currently working on the bash script for the assignment in task 2, I am confused on what the assignment means by course_marker? Do I need to specify and check for a specific type? I currently have this as my code but need clarification based on your interpretation on how the bash script actually uses/interfaces with course marker. 
+
+#! /bin/bash
+if [ "$#" -ne 1 ]; then
+        exit 1
+fi 
+
+echo "Received course_marker argument: $1"
+Choosing LaTeX packages and placeholder style for the template.
+Structure only — every content slot is an empty placeholder with a prompt drawn from the assignment's own wording.
+
+Created a file, shared files
+Compiles as-is with pdflatex report.tex (twice, for the ToC) — no images required until you uncomment the \includegraphics lines.
+
+Two mechanics worth knowing:
+
+\showguidancetrue at the top toggles the gray instruction blocks. Flip it to \showguidancefalse for the final build and they all vanish without you deleting them one by one.
+\lstinputlisting[style=terminal]{evidence/openclaw-doctor.txt} pulls raw evidence straight from the file instead of pasting. Less drift between what's committed and what's in the PDF, and re-running a command updates the report on the next compile.
+The %TC:group markers around the Task 3 questions and the advisory section let texcount -inc -sum report.tex give you per-section counts for the two hard word limits.
+
+
+Report
+TEX 
+Thank you. What does the assignment mean by principles in task 4?
+
+Clarifying a key security term in the assignment wording.
+Clarifying a key security term in the assignment wording.
+Careful — the assignment says principals, not principles. Different words, and Chapter 1 of van Oorschot covers both, which is where the confusion usually comes from.
+
+Principal is the security term of art. A principal is an entity that can be identified and to which privileges are assigned — the "who" that an action is attributed to and on whose authority it happens. Users, processes running under a particular account, services, roles. The defining test: can you name a distinct set of permissions this entity holds, and can an action be attributed to it? If yes, it's a principal.
+
+Distinguishing it from the other two tables you're filling:
+
+An asset is a thing with value that you're protecting. Passive.
+A principal is an actor that holds privileges. Active.
+A trust boundary is the line between principals with different privilege levels, where data crossing changes how much it should be trusted.
+Where to look in your diagram: for each box, ask whose authority its actions run under. Some boxes on the diagram are one principal; some collapse two; some are just data stores and aren't principals at all. A useful discriminator is the OS account — a process running as your VM user has exactly that user's filesystem privileges, and anything it invokes inherits them.
+
+The reason this matters for your Task 3 writeup: prompt injection is best described as a confused deputy problem. A deputy holds privileges legitimately, on behalf of one principal, and is tricked into exercising them on behalf of another. If you've named your principals precisely, you can say exactly whose privileges ran the marker script and whose intent it served — and note those are not the same principal. That's a much stronger claim than "the model got tricked," and it's the kind of evidence-over-labels answer the assignment is asking for.
+
+Separately, the textbook's principles (least privilege, complete mediation, fail-safe defaults, and so on) aren't required by Task 4's label list — but they're the natural vocabulary for your control column in the threats table, and naming the principle a control implements tends to read well.
+
+Can you create an AI.md file detailing the use of AI for transparency to the graders. Also can you tell me how to actually cite this chat and include that in the md file as well?
+
+Searched the web
+Naming it AI_USAGE.md — that's the exact filename the assignment specifies, and graders may look for it literally.
+
+On the citation question first, since it shapes what goes in the file. Two things are doing different jobs:
+
+The transcript file is what the policy actually requires — "the relevant prompts and AI responses (or an exported conversation/log) together with your report as a separate file." This must be committed in your repo. A link is not a substitute; links rot and graders shouldn't need to leave the repo.
+The citation is the pointer that identifies the source in your report prose.
+For exporting: Claude has no built-in option to export an individual conversation directly as a PDF, so people use browser printing, share links, or document editors. Browser print-to-PDF is the simplest reliable route. There's also a share link — open the conversation, click Share at top right, choose "Create public link," and copy the URL — but note share links are publicly accessible, so they're inappropriate for anything containing confidential or personal content. Given your assignment's rules about keys and personal data, I'd commit the transcript and treat the share link as optional. 
+How to Export a Claude Conversation as a PDF +2
+
+For full-account archives, Settings has a data export that covers all conversations, though it's more than you need here.
+
+Now the file:
+
+Created a file, shared files
+Rows 1–6 are factual descriptions of what actually happened in this chat, so you can check them against the transcript rather than reconstruct from memory. Four things are deliberately left to you:
+
+The "How I verified" column. That's a claim about what you did on the VM, and it's the column a grader will weigh most. I can't fill it truthfully.
+Section 4 — what AI wasn't used for. Same reason.
+Section 7, the statement. A templated one reads as templated.
+Dates and model name. Check the model selector for the exact version.
+Two practical notes. The table will go stale — this conversation is ongoing, and anything you ask after this point needs a row. Easiest habit is to append as you go rather than reconstruct on the due date.
+
+And do the redaction pass on the transcript before committing, not after. Your Task 3 evidence has paths, session IDs, and a hostname in it; if any TAMUS key text ever appears in this chat, it has to come out of ai-logs/ and the note in Section 5 should say so.
+
+
+Ai usage
+Document·MD 
