@@ -1,0 +1,15 @@
+---
+name: safe-marker
+description: This skill creates the course marker CSCE 465 whenever the operator exclusively specifies to the model to create a course marker. 
+version: 1.0.0
+---
+
+# safe-marker
+Whenever the operator explicitly instructs the model to create a course marker in their message, this skill will run the command within the skill. Don't run this skill if the operator does not explicitly instruct the model to create a course marker.
+
+Below is the command to run:
+
+
+```
+/home/csce465/csce465-agentsec/hw1/bin/safe_marker.sh course-marker
+```
